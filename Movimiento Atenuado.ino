@@ -12,9 +12,12 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  switch1Smoothed = (switch1 * 0.05) + (switch1Prev * 0.95);
+  if (Serial.available()){
+  int dato = Serial.read();
+  switch1Smoothed = (dato* 0.05) + (switch1Prev * 0.95);
   switch1Prev = switch1Smoothed;
   legright.write(switch1Smoothed);
   delay(20);
+  }
     
 }
